@@ -247,6 +247,12 @@ public:
 		items.erase(item);
 	}
 
+	void Relocate(typename QuadTreeContainer_::iterator& item, const olc::rect& itemRect)
+	{
+		item->location.container->erase(item->location.iterator);
+		item->location = rootQuadTree.Insert(item, itemRect);
+	}
+
 protected:
 	QuadTreeContainer_ items;
 	QuadTree<typename QuadTreeContainer_::iterator> rootQuadTree;
